@@ -11,6 +11,17 @@ class ShiftQuerySet(models.QuerySet):
 
 
 class Shift(models.Model):
+    """
+    Рабочая смена в организации
+    Смена имеет начало и окончание
+    На смену может быть назначен сотрудник
+
+    TODO:
+      Смена считается открытой (state == open) если сотрудник не назначен
+      Смена считается занятой (state == assigned) если сотрудник назначен
+      Разработать метод для вычисления instance_diff - отличий между полями объектов модели
+      Разработать стейт-машину для хранения текущего состояния и истории изменений change_history
+    """
     start = models.DateTimeField(verbose_name="Начало")
     end = models.DateTimeField(verbose_name="Окончание")
     employee = models.ForeignKey(

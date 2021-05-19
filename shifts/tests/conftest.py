@@ -13,12 +13,12 @@ pytestmark = [
 
 @pytest.fixture()
 def make_shift(mixer, organization):
-    def _organization_generator(**kwargs):
+    def _shift_generator(**kwargs):
         if "organization" not in kwargs:
             kwargs["organization"] = organization
         return mixer.blend(Shift, **kwargs)
 
-    return _organization_generator
+    return _shift_generator
 
 
 @pytest.fixture()
